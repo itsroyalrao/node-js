@@ -1,80 +1,77 @@
-var form = document.getElementById('addForm');
-var itemList = document.getElementById('items');
-var filter = document.getElementById('filter');
+const posts = [];
 
-// Form submit event
-form.addEventListener('submit', addItem);
-// Delete event
-itemList.addEventListener('click', removeItem);
-// Filter event
-filter.addEventListener('keyup', filterItems);
-
-// Add item
-function addItem(e){
-  e.preventDefault();
-
-  // Get input value
-  var newItem = document.getElementById('item').value;
-  var newItemValue = document.getElementById('item-value').value;
-
-  // Create new li element
-  var li = document.createElement('li');
-  // Add class
-  li.className = 'list-group-item';
-  // Add text node with input value
-  li.appendChild(document.createTextNode(newItem + ' '));
-  li.appendChild(document.createTextNode(newItemValue));
-
-  // Create del button element
-  var deleteBtn = document.createElement('button');
-
-  // Add classes to del button
-  deleteBtn.className = 'btn btn-danger btn-sm float-right delete';
-
-  // Append text node
-  deleteBtn.appendChild(document.createTextNode('X'));
-
-  // Append button to li
-  li.appendChild(deleteBtn);
-
-  // EDIT button
-  var editBtn = document.createElement('button');
-  editBtn.className = 'btn btn-sm float-right';
-  editBtn.appendChild(document.createTextNode('EDIT'));
-  li.appendChild(editBtn);
-
-  // Append li to list
-  itemList.appendChild(li);
+function createPost1() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const post = { title: 'POST1' };
+      posts.push(post);
+      resolve(post);
+    }, 1000)
+  })
 }
 
-// Remove item
-function removeItem(e){
-  if(e.target.classList.contains('delete')){
-    if(confirm('Are You Sure?')){
-      var li = e.target.parentElement;
-      itemList.removeChild(li);
-    }
-  }
+function createPost2() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const post = { title: 'POST2' };
+      posts.push(post);
+      resolve(post);
+    }, 1000)
+  })
 }
 
-// Filter Items
-function filterItems(e){
-  // convert text to lowercase
-  var text = e.target.value.toLowerCase();
-  // Get list
-  var items = itemList.getElementsByTagName('li');
-  // Convert to an array
-  Array.from(items).forEach(function(item){
-    var itemName = item.firstChild.textContent;
-    var itemValue = item.firstChild.nextSibling.textContent;
-    if(itemName.toLowerCase().indexOf(text) != -1){
-      item.style.display = 'block';
-    }
-    else if (itemValue.toLowerCase().indexOf(text) != -1) {
-      item.style.display = 'block';
-    }
-    else {
-      item.style.display = 'none';
-    }
-  });
+function createPost3() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const post = { title: 'POST3' };
+      posts.push(post);
+      resolve(post);
+    }, 1000)
+  })
 }
+
+function createPost4() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const post = { title: 'POS4' };
+      posts.push(post);
+      resolve(post);
+    }, 1000)
+  })
+}
+
+function updateLastUserActivityTime() {
+  return new Promise((res, rej) => setTimeout(() => {
+    const activity = { lastActivity: new Date().getTime() };
+    posts.push(activity);
+    res(activity);
+  }, 1000))
+}
+
+function deletePost() {
+  return new Promise((res, rej) => setTimeout(() => {
+    if (posts.length > 0) {
+      posts.pop();
+      posts.pop();
+      res();
+    } else {
+      rej('ERROR: ARRAY IS EMPTY');
+    }
+  }, 1000))
+}
+
+createPost1().then(val => console.log(val.title))
+.then(updateLastUserActivityTime).then(act => console.log(act.lastActivity))
+.then(createPost2).then(val => console.log(val.title))
+.then(updateLastUserActivityTime).then(act => console.log(act.lastActivity))
+.then(createPost3).then(val => console.log(val.title))
+.then(updateLastUserActivityTime).then(act => console.log(act.lastActivity))
+.then(createPost4).then(val => console.log(val.title))
+.then(updateLastUserActivityTime).then(act => console.log(act.lastActivity))
+.then(deletePost)
+.then(createPost1).then(val => console.log(val.title))
+.then(updateLastUserActivityTime).then(act => console.log(act.lastActivity))
+.then(createPost2).then(val => console.log(val.title))
+.then(updateLastUserActivityTime).then(act => console.log(act.lastActivity))
+.then(createPost3).then(val => console.log(val.title))
+.then(updateLastUserActivityTime).then(act => console.log(act.lastActivity));
