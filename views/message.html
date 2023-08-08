@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            font: 1em sans-serif;
+        }
+
+        .main-header {
+            width: 100%;
+            height: 3.5rem;
+            background-color: #e9ec5e;
+            padding: 0 1rem;
+        }
+
+        .main-header_nav {
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .main-header_item-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .main-header_item {
+            margin: 0 .5rem;
+        }
+
+        .main-header_item a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .main-header_item a:hover,
+        .main-header_item a:active,
+        .main-header_item .active {
+            color: blue;
+        }
+
+        main {
+            padding: 1rem;
+        }
+
+        .product-form {
+            width: 20rem;
+            max-width: 90%;
+        }
+
+        .product-form_input-data {
+            margin: 1rem 0;
+        }
+
+        .product-form_form-data input {
+            font: inherit;
+            border: 2px solid #e9ec5e;
+            border-radius: 2px;
+        }
+
+        button {
+            font: inherit;
+            background-color: black;
+            color: whitesmoke;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            padding: 3px 6px;
+        }
+
+        button:hover,
+        button:active {
+            background-color: #e9ec5e;
+            color: #000;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="main-header">
+        <nav class="main-header_nav">
+            <ul class="main-header_item-list">
+                <li class="main-header_item">
+                    <h4>ChatApp</h4>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div id="messages">
+
+        </div>
+        <form class="product-form" action="/" method="POST">
+            <div class="product-form_form-data">
+                <input type="text" name="query" id="query">
+                <button type="submit">Send</button>
+            </div>
+        </form>
+    </main>
+
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const username = urlParams.get('username');
+        const query = urlParams.get('content');
+
+        console.log(username);
+
+        if (username) {
+            localStorage.setItem('username', username);
+        }
+
+        const user = localStorage.getItem('username');
+
+        if (query) {
+            const messagesDiv = document.getElementById('messages');
+            const message = document.createElement('div');
+            message.textContent = query;
+            messagesDiv.appendChild(message);
+        }
+    </script>
+
+</body>
+
+</html>
