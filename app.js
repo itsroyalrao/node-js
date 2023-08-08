@@ -5,6 +5,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+
 const adminRoute = require('./routes/admin');
 const shopRoute = require('./routes/shop');
 const contactRoute = require('./routes/contact.js')
@@ -18,7 +21,6 @@ app.use('/shop', shopRoute);
 app.use('/contact', contactRoute);
 app.use('/success', successRoute);
 
-app.use((req, res, next) => {
-    res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
-})
+const errorController = require('./controllers/error')
+app.use(errorController.get404);
 app.listen(4000);
