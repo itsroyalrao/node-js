@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
 
     <link rel="stylesheet" href="/css/main.css">
 </head>
+
 <body>
     <header class="main-header">
         <nav class="main-header_nav">
@@ -21,6 +23,19 @@
     <main>
         <h1>My Products</h1>
         <p>Lists of all products</p>
+
+        <!-- <%= prods %> -->
+
+        <ul>
+            <% if(prods.length > 0) %>
+                <% for (const product of prods) { %>
+                    <li>
+                        <%= product.titleName %> - <%= product.titleValue %>
+                    </li>
+                <% } %>
+        </ul>
+
     </main>
 </body>
+
 </html>
