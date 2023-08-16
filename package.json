@@ -1,21 +1,17 @@
 {
   "name": "nodejs-complete-guide",
   "version": "1.0.0",
-<<<<<<< HEAD
-  "description": "Learning node js",
-=======
   "description": "Complete Node.js Guide",
->>>>>>> origin/main
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js",
     "start-server": "node app.js"
   },
-<<<<<<< HEAD
-  "author": "Mohit Yadav",
+  "author": "Maximilian Schwarzmüller",
   "license": "ISC",
   "devDependencies": {
+    "nodeman": "^1.1.2",
     "nodemon": "^3.0.1"
   },
   "dependencies": {
@@ -25,18 +21,5 @@
     "express-handlebars": "^7.1.2",
     "mysql2": "^3.6.0",
     "pug": "^3.0.2"
-=======
-  "author": "Maximilian Schwarzmüller",
-  "license": "ISC",
-  "devDependencies": {
-    "nodemon": "^1.18.3"
-  },
-  "dependencies": {
-    "body-parser": "^1.18.3",
-    "ejs": "^2.6.1",
-    "express": "^4.16.3",
-    "express-handlebars": "^3.0.0",
-    "pug": "^2.0.3"
->>>>>>> origin/main
   }
 }
