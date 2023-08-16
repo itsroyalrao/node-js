@@ -33,6 +33,7 @@ exports.getIndex = (req, res, next) => {
 };
 
 exports.getCart = (req, res, next) => {
+<<<<<<< HEAD
   Cart.getCart(cart => {
     Product.fetchAll(products => {
       const cartProducts = [];
@@ -50,6 +51,11 @@ exports.getCart = (req, res, next) => {
         products: cartProducts
       });
     });
+=======
+  res.render('shop/cart', {
+    path: '/cart',
+    pageTitle: 'Your Cart'
+>>>>>>> origin/main
   });
 };
 
@@ -61,6 +67,7 @@ exports.postCart = (req, res, next) => {
   res.redirect('/cart');
 };
 
+<<<<<<< HEAD
 exports.postCartDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
   Product.findById(prodId, product => {
@@ -69,6 +76,8 @@ exports.postCartDeleteProduct = (req, res, next) => {
   });
 };
 
+=======
+>>>>>>> origin/main
 exports.getOrders = (req, res, next) => {
   res.render('shop/orders', {
     path: '/orders',
