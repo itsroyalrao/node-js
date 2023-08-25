@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Commerce</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <form id="product-form">
+      <input type="text" id="item" placeholder="Item Name">
+      <input type="text" id="price" placeholder="Price">
+      <!-- Hidden input field to store the item id for editing -->
+      <input type="hidden" id="item-id">
+
+      <input type="submit" class="btn btn-dark" value="Add Product">
+    </form>
+
+    <h1>Products: </h1>
+    <div id="items"> </div>
+    <h4>Total value: <span id="total"></span>
+    </h4>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>
