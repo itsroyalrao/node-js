@@ -2,13 +2,16 @@ const mongoose = require('mongoose');
 
 const signupSchema = mongoose.Schema({
   name: {
-    type: String
+    type: String,
+    required: [true, 'Name cannot be empty!'],
   },
   email: {
-    type: String
+    type: String,
+    required: [true, 'Email cannot be empty!'],
   },
   password: {
-    type: Number
+    type: String,
+    required: [true, 'Password cannot be empty!'],
   }
 });
 

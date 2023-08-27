@@ -16,15 +16,17 @@
       <label for="email">Email: </label>
       <input type="email" name="email" id="email">
       <label for="password">Password: </label>
-      <input type="number" name="password" id="password">
+      <input type="password" name="password" id="password">
 
       <button type="submit">Sign Up</button>
     </form>
   </div>
+  <div><span id="status"></span></div>
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script>
     const form = document.getElementById('form');
+    const status = document.getElementById('status');
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -32,10 +34,14 @@
       const name = document.getElementById('name').value;
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
+      form.reset();
       try {
         const obj = { name, email, password };
-        await axios.post('/signup', obj);
-        form.reset();
+        const result = await axios.post('/signup', obj);
+        status.appendChild(document.createTextNode(result.data.msg));
+        setTimeout(() => {
+          status.innerHTML = '';
+        }, 2000);
       } catch (error) {
         console.log(error);
       }
