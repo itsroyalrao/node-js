@@ -3,11 +3,13 @@ const express = require('express');
 const app = express();
 const connectDB = require('./db/connect');
 const signupRoute = require('./routes/signup');
+const loginRoute = require('./routes/login');
 
 app.use(express.static("./public"));
 app.use(express.json());
 
 app.use('/signup', signupRoute);
+app.use('/login', loginRoute);
 
 const port = 3000;
 const start = async () => {

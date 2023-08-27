@@ -1,6 +1,6 @@
 const Signup = require('../models/signup');
 
-const createUser = async (req, res) => {
+const signup = async (req, res) => {
   try {
     const user = await Signup.findOne({ email: req.body.email });
     if (user) return res.status(200).json({ success: false, msg: 'User already exists!' });
@@ -11,4 +11,5 @@ const createUser = async (req, res) => {
   }
 }
 
-module.exports = { createUser }
+
+module.exports = { signup };
