@@ -4,12 +4,14 @@ const app = express();
 const connectDB = require('./db/connect');
 const signupRoute = require('./routes/signup');
 const loginRoute = require('./routes/login');
+const expenseRoute = require('./routes/expense');
 
 app.use(express.static("./public"));
 app.use(express.json());
 
 app.use('/signup', signupRoute);
 app.use('/login', loginRoute);
+app.use('/expense', expenseRoute);
 
 const port = 3000;
 const start = async () => {

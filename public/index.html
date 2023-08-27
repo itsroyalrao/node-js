@@ -43,10 +43,8 @@
         const obj = { name, email, password };
         const result = await axios.post('/signup', obj);
         status.appendChild(document.createTextNode(result.data.msg));
-        setTimeout(() => {
-          status.innerHTML = '';
-        }, 2000);
       } catch (error) {
+        status.appendChild(document.createTextNode('User already exists!'));
         console.log(error);
       }
     })

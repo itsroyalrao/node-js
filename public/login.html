@@ -38,12 +38,10 @@
       form.reset();
       try {
         const obj = { email, password };
-        const result = await axios.post('/login', obj);
-        status.appendChild(document.createTextNode(result.data.msg));
-        setTimeout(() => {
-          status.innerHTML = '';
-        }, 2000);
+        await axios.post('/login', obj);
+        window.location.href = 'expense.html';
       } catch (error) {
+        status.appendChild(document.createTextNode('Password is incorrect!'));
         console.log(error);
       }
     })
