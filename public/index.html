@@ -4,29 +4,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>E-Commerce</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+  <title>Sign Up</title>
 </head>
 
 <body>
-  <div class="container">
-    <form id="product-form">
-      <input type="text" id="item" placeholder="Item Name">
-      <input type="text" id="price" placeholder="Price">
-      <!-- Hidden input field to store the item id for editing -->
-      <input type="hidden" id="item-id">
 
-      <input type="submit" class="btn btn-dark" value="Add Product">
+  <div>
+    <form id="form">
+      <label for="name">Name: </label>
+      <input type="text" name="name" id="name">
+      <label for="email">Email: </label>
+      <input type="email" name="email" id="email">
+      <label for="password">Password: </label>
+      <input type="number" name="password" id="password">
+
+      <button type="submit">Sign Up</button>
     </form>
-
-    <h1>Products: </h1>
-    <div id="items"> </div>
-    <h4>Total value: <span id="total"></span>
-    </h4>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
-  <script src="main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    const form = document.getElementById('form');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      try {
+        const obj = { name, email, password };
+        await axios.post('/signup', obj);
+        form.reset();
+      } catch (error) {
+        console.log(error);
+      }
+    })
+  </script>
 </body>
 
 </html>
