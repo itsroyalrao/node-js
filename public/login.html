@@ -38,8 +38,8 @@
       form.reset();
       try {
         const obj = { email, password };
-        await axios.post('/login', obj);
-        window.location.href = 'expense.html';
+        const result = await axios.post('/login', obj);
+        window.location.href = 'expense.html?userId=' + encodeURIComponent(result.data.user._id);
       } catch (error) {
         status.appendChild(document.createTextNode('Password is incorrect!'));
         console.log(error);

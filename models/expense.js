@@ -14,6 +14,9 @@ const expenseSchema = mongoose.Schema({
     required: true,
     // enum: ['Food', 'Fuel', 'Electricity', 'Movie'],
   },
+  userID: {
+    type: String,
+  }
 });
 
 module.exports = mongoose.model('Expense', expenseSchema);
