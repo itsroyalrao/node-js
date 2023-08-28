@@ -1,4 +1,3 @@
-const { query } = require('express');
 const Expense = require('../models/expense');
 
 const getAllExpenses = async (req, res) => {
@@ -16,10 +15,7 @@ const getAllExpenses = async (req, res) => {
 
 const createExpense = async (req, res) => {
   try {
-    const { amount, description, category, userID } = req.body;
-    const data = { amount, description, category, userID };
-    console.log(data);
-    const expense = await Expense.create(data);
+    const expense = await Expense.create(req.body);
     res.status(201).json({ expense });
   } catch (error) {
     console.log(error);

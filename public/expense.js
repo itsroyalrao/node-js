@@ -1,6 +1,6 @@
 const urlParams = new URLSearchParams(window.location.search);
 const userID = urlParams.get('userId');
-localStorage.setItem('userID', userID);
+if (userID) localStorage.setItem('userID', userID);
 
 const form = document.getElementById('form');
 const items = document.getElementById('items');
@@ -13,7 +13,7 @@ async function createExpense(amount, description, category) {
     console.log(userID);
     const obj = { amount, description, category, userID };
     await axios.post('/expense', obj);
-    await getAllExpenses();
+    getAllExpenses();
   } catch (error) {
     console.log(error);
   }
@@ -66,3 +66,25 @@ function addExpense() {
 
   form.reset();
 }
+
+// async function goPremium(e) {
+//   try {
+//     const token1 = localStorage.getItem('rzp_device_id');
+//     const token2 = localStorage.getItem('rzp_checkout_anon_id');
+//     console.log(token1, token2);
+
+//     const response = await axios.get('/payment');
+
+//     // await axios.post('/payment', { name: 'Mohit' });
+
+//     const rzp1 = new Razorpay(options);
+//     rzp1.open();
+//     e.preventDefault();
+//     rzp1.on('payment.failed', response => {
+//       console.log(response);
+//       alert('Something went wrong!')
+//     })
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
