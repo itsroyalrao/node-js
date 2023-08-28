@@ -66,25 +66,3 @@ function addExpense() {
 
   form.reset();
 }
-
-// async function goPremium(e) {
-//   try {
-//     const token1 = localStorage.getItem('rzp_device_id');
-//     const token2 = localStorage.getItem('rzp_checkout_anon_id');
-//     console.log(token1, token2);
-
-//     const response = await axios.get('/payment');
-
-//     // await axios.post('/payment', { name: 'Mohit' });
-
-//     const rzp1 = new Razorpay(options);
-//     rzp1.open();
-//     e.preventDefault();
-//     rzp1.on('payment.failed', response => {
-//       console.log(response);
-//       alert('Something went wrong!')
-//     })
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
