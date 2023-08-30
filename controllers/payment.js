@@ -1,7 +1,6 @@
 const Razorpay = require('razorpay');
 const Payment = require('../models/payment');
 const Signup = require('../models/signup');
-// const Expense = require('../models/expense');
 
 const getPaymentID = async (req, res) => {
   try {
