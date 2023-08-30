@@ -6,7 +6,7 @@ const signupRoute = require('./routes/signup');
 const loginRoute = require('./routes/login');
 const expenseRoute = require('./routes/expense');
 const paymentRoute = require('./routes/payment');
-const forgotpassword = require('./routes/forgotPassword');
+const resetpassword = require('./routes/resetPassword');
 
 app.use(express.static("./public"));
 app.use(express.json());
@@ -15,7 +15,7 @@ app.use('/signup', signupRoute);
 app.use('/login', loginRoute);
 app.use('/expense', expenseRoute);
 app.use('/payment', paymentRoute);
-app.use('/password', forgotpassword);
+app.use('/password', resetpassword);
 
 const port = 3000;
 const start = async () => {
