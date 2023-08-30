@@ -12,11 +12,14 @@ const expenseSchema = mongoose.Schema({
   category: {
     type: String,
     required: true,
-    // enum: ['Food', 'Fuel', 'Electricity', 'Movie'],
   },
   userID: {
-    type: String,
-  }
+    type: mongoose.SchemaTypes.ObjectId,
+  },
 });
+
+// expenseSchema.statics.totalExpense = function () {
+//   console.log('hello');
+// };
 
 module.exports = mongoose.model('Expense', expenseSchema);

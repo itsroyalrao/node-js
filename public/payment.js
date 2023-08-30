@@ -1,3 +1,4 @@
+const ul = document.getElementById('leaderboard');
 const userId = localStorage.getItem('userID');
 
 document.getElementById('rzp-button1').onclick = async function (e) {
@@ -43,16 +44,16 @@ async function leaderboards() {
   try {
     const result = await axios.get('/payment/leaderboard');
     const data = result.data.userData;
+    ul.innerHTML = '';
     for (let i = 0; i < data.length; i++) {
-      leaderboard(data[i].id, data[i].name, data[i].amount);
+      appendLeaderboard(i + 1, data[i].name, data[i].totalExpense);
     }
   } catch (error) {
     console.log(error);
   }
 }
 
-function leaderboard(id, name, amount) {
-  const ul = document.getElementById('leaderboard');
+function appendLeaderboard(id, name, amount) {
   const li = document.createElement('li');
   li.appendChild(document.createTextNode(id + ' - ' + name + " - " + amount));
   ul.appendChild(li);

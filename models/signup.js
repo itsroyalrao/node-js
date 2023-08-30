@@ -12,7 +12,11 @@ const signupSchema = mongoose.Schema({
   password: {
     type: String,
     required: [true, 'Password cannot be empty!'],
-  }
+  },
+  totalExpense: {
+    type: Number,
+    default: 0,
+  },
 });
 
 module.exports = mongoose.model('Signup', signupSchema);
