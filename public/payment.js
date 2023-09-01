@@ -1,4 +1,4 @@
-const ul = document.getElementById('leaderboard');
+const lb = document.getElementById('leaderboard');
 const userId = localStorage.getItem('userID');
 
 document.getElementById('rzp-button1').onclick = async function (e) {
@@ -32,7 +32,7 @@ document.getElementById('rzp-button1').onclick = async function (e) {
 
 function premium() {
   const div = document.getElementById('premium');
-  div.appendChild(document.createTextNode('You are now a Premium user '));
+  div.appendChild(document.createTextNode('You are now a Premium user : '));
   const btn = document.createElement('button');
   btn.id = 'premium-btn';
   btn.appendChild(document.createTextNode('Show Leaderboard'));
@@ -44,7 +44,7 @@ async function leaderboards() {
   try {
     const result = await axios.get('/payment/leaderboard');
     const data = result.data.userData;
-    ul.innerHTML = '';
+    lb.innerHTML = '';
     for (let i = 0; i < data.length; i++) {
       appendLeaderboard(i + 1, data[i].name, data[i].totalExpense);
     }
@@ -54,9 +54,20 @@ async function leaderboards() {
 }
 
 function appendLeaderboard(id, name, amount) {
-  const li = document.createElement('li');
-  li.appendChild(document.createTextNode(id + ' - ' + name + " - " + amount));
-  ul.appendChild(li);
+  const trData = document.createElement('tr');
+
+  const tdId = document.createElement('td');
+  tdId.textContent = id;
+  const tdName = document.createElement('td');
+  tdName.textContent = name;
+  const tdAmount = document.createElement('td');
+  tdAmount.textContent = amount;
+
+  trData.appendChild(tdId);
+  trData.appendChild(tdName);
+  trData.appendChild(tdAmount);
+
+  lb.appendChild(trData);
 }
 
 const bool = localStorage.getItem(userId);

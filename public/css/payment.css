@@ -1,0 +1,22 @@
+#premium {
+  margin-top: 20px;
+  background-color: whitesmoke;
+  color: black;
+  border-radius: 10px;
+  padding: 5px 10px;
+}
+
+#premium-btn {
+  border: none;
+  background-color: #0d6efd;
+  color: whitesmoke;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+#premium-btn:hover {
+  background-color: rgb(115, 93, 255);
+}
+
+#leaderboard {
+
+}

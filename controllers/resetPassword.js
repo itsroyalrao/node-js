@@ -26,10 +26,7 @@ const send_mail = async (req, res) => {
         text: `http://localhost:3000/password/forgot-password/${uuid}`,
       }
 
-      transport.sendMail(info, err => {
-        if (err) console.log(err);
-        else console.log('Email has sent');
-      })
+      transport.sendMail(info, err => console.log(err));
 
       const obj = {
         id: uuid,

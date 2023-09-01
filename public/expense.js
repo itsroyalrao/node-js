@@ -44,17 +44,20 @@ async function deleteExpense(expenseID) {
 }
 
 function appendData(amount, description, category, expenseID) {
-  let li = document.createElement('li');
-  li.appendChild(document.createTextNode(amount + " - " + description + " - " + category + " "));
+  const trData = document.createElement('tr');
 
-  let dlt = document.createElement('button');
-  dlt.type = 'button';
-  dlt.id = expenseID;
-  dlt.appendChild(document.createTextNode('Delete Expense'));
-  dlt.addEventListener('click', deleteExpense);
-  li.appendChild(dlt);
+  const tdAmount = document.createElement('td');
+  tdAmount.textContent = amount;
+  const tdDescription = document.createElement('td');
+  tdDescription.textContent = description;
+  const tdCategory = document.createElement('td');
+  tdCategory.textContent = category;
 
-  items.appendChild(li);
+  trData.appendChild(tdAmount);
+  trData.appendChild(tdDescription);
+  trData.appendChild(tdCategory);
+
+  items.appendChild(trData);
 }
 
 function addExpense() {
