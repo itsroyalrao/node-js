@@ -70,5 +70,4 @@ function appendLeaderboard(id, name, amount) {
   lb.appendChild(trData);
 }
 
-const bool = localStorage.getItem(userId);
-if (bool) premium();
+if (userId) premium();

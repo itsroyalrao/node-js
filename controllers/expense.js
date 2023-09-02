@@ -43,4 +43,4 @@ const deleteExpense = async (req, res) => {
   }
 }
 
-module.exports = { getAllExpenses, createExpense, deleteExpense }
+module.exports = { getAllExpenses, createExpense, deleteExpense };

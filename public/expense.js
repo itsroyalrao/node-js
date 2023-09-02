@@ -1,6 +1,4 @@
-const urlParams = new URLSearchParams(window.location.search);
-const userID = urlParams.get('userId');
-if (userID) localStorage.setItem('userID', userID);
+const userID = localStorage.getItem('userID');
 
 const form = document.getElementById('form');
 const items = document.getElementById('items');
@@ -9,8 +7,6 @@ form.addEventListener('submit', addExpense);
 
 async function createExpense(amount, description, category) {
   try {
-    const userID = localStorage.getItem('userID');
-    console.log(userID);
     const obj = { amount, description, category, userID };
     await axios.post('/expense', obj);
     getAllExpenses();
@@ -21,10 +17,7 @@ async function createExpense(amount, description, category) {
 
 async function getAllExpenses() {
   items.innerHTML = '';
-  const userID = localStorage.getItem('userID');
-  const result = await axios.get('/expense', {
-    params: { userID: userID }
-  });
+  const result = await axios.get(`/expense?userID=${userID}`);
   const data = result.data.expense;
   data.forEach(element => {
     appendData(element.amount, element.description, element.category, element._id);
