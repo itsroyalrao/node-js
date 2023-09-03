@@ -44,6 +44,9 @@ async function leaderboards() {
   try {
     const result = await axios.get('/payment/leaderboard');
     const data = result.data.userData;
+
+    const visibi = document.getElementById('visibi');
+    visibi.style.display = "";
     lb.innerHTML = '';
     for (let i = 0; i < data.length; i++) {
       appendLeaderboard(i + 1, data[i].name, data[i].totalExpense);
@@ -71,3 +74,41 @@ function appendLeaderboard(id, name, amount) {
 }
 
 if (userId) premium();
+
+
+
+// function appendLeaderboard(id, name, amount) {
+//   const table = document.createElement('table');
+//   const thead = document.createElement('thead');
+//   const tbody = document.createElement('tbody');
+//   const tr = document.createElement('tr');
+//   const thId = document.createElement('th');
+//   thId.appendChild(document.createTextNode('Id'));
+//   const thName = document.createElement('th');
+//   thName.appendChild(document.createTextNode('Name'));
+//   const thAmount = document.createElement('th');
+//   thAmount.appendChild(document.createTextNode('Amount'));
+//   tr.appendChild(thId);
+//   tr.appendChild(thName);
+//   tr.appendChild(thAmount);
+//   thead.appendChild(tr);
+
+//   const trData = document.createElement('tr');
+
+//   const tdId = document.createElement('td');
+//   tdId.textContent = id;
+//   const tdName = document.createElement('td');
+//   tdName.textContent = name;
+//   const tdAmount = document.createElement('td');
+//   tdAmount.textContent = amount;
+
+//   trData.appendChild(tdId);
+//   trData.appendChild(tdName);
+//   trData.appendChild(tdAmount);
+
+//   tbody.appendChild(trData);
+//   table.appendChild(thead);
+//   table.appendChild(tbody);
+
+//   lb.appendChild(table);
+// }

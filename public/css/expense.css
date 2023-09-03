@@ -1,3 +1,7 @@
+body{
+  background-color: rgb(45, 41, 41);
+}
+
 #navbar {
   background-color: rgb(115, 93, 255);
 }
@@ -66,8 +70,52 @@
 
 .append-items {
   color: whitesmoke;
+  margin-bottom: 20px;
 }
 
-#expense-data {
-  background-color: blue;
+#pagination {
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  margin: 20px;
+}
+
+ul {
+  margin: auto;
+  padding: 0;
+}
+
+ul li {
+  display: inline-block;
+  color: whitesmoke;
+  margin: 0 10px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 45px;
+  cursor: pointer;
+  background-position: 0 -45px;
+  transition: 0.5s;
+}
+
+.btn0 {
+  border: none;
+  background-color: rgb(115, 93, 255);
+  color: whitesmoke;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.link:hover {
+  background-color: whitesmoke;
+  color: rgb(115, 93, 255);
+}
+
+li.active {
+  background-color: whitesmoke;
+  color: rgb(115, 93, 255);
+  background-position: 0 0;
 }

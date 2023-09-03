@@ -1,3 +1,4 @@
+let currentValue = 1;
 const userID = localStorage.getItem('userID');
 
 const form = document.getElementById('form');
@@ -14,16 +15,6 @@ async function createExpense(amount, description, category) {
     console.log(error);
   }
 }
-
-async function getAllExpenses() {
-  items.innerHTML = '';
-  const result = await axios.get(`/expense?userID=${userID}`);
-  const data = result.data.expense;
-  data.forEach(element => {
-    appendData(element.amount, element.description, element.category, element._id);
-  });
-}
-getAllExpenses();
 
 async function deleteExpense(expenseID) {
   try {
@@ -61,4 +52,57 @@ function addExpense() {
   createExpense(amount, description, category)
 
   form.reset();
+}
+
+const active = document.getElementsByClassName('active');
+(async () => {
+  await getExpense();
+})();
+
+const link = document.getElementsByClassName('link');
+async function activeLink(event) {
+  for (const l of link) {
+    l.classList.remove('active');
+  }
+  event.target.classList.add('active');
+  currentValue = event.target.value;
+
+  await getExpense();
+}
+
+async function backbtn() {
+  if (currentValue > 1) {
+    for (const l of link) {
+      l.classList.remove('active');
+    }
+    currentValue--;
+    link[currentValue - 1].classList.add('active');
+
+    await getExpense();
+  }
+}
+
+async function nextbtn() {
+  if (currentValue < link.length) {
+    for (const l of link) {
+      l.classList.remove('active');
+    }
+    currentValue++;
+    link[currentValue - 1].classList.add('active');
+
+    await getExpense();
+  }
+}
+
+async function getExpense() {
+  try {
+    const result = await axios.get(`/expense?userID=${userID}&page=${currentValue}`);
+    const data = result.data.userList;
+    items.innerHTML = '';
+    data.forEach(element => {
+      appendData(element.amount, element.description, element.category, element._id);
+    });
+  } catch (e) {
+    console.log(e.message);
+  }
 }

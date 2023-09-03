@@ -3,10 +3,15 @@ const Signup = require('../models/signup');
 
 const getAllExpenses = async (req, res) => {
   try {
-    const { userID } = req.query;
+    const { userID, page } = req.query;
     let expense = await Expense.find({});
     if (expense.length) {
       expense = await Expense.find({ userID: userID });
+      const userList = [];
+      for (let i = 5 * [page - 1]; i < 5 * page && i < expense.length; i++) {
+        userList.push(expense[i]);
+      }
+      return res.status(200).json({ userList });
     };
     res.status(200).json({ expense });
   } catch (error) {

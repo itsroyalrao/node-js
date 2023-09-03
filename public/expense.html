@@ -65,18 +65,31 @@
         <tbody id="items"> </tbody>
       </table>
 
-      <h4>Leaderboard</h4>
-      <table class="table table-primary">
-        <thead>
-          <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Name</th>
-            <th scope="col">Total Expense</th>
-          </tr>
-        </thead>
-        <tbody id="leaderboard"> </tbody>
-      </table>
-      <!-- <div id="leaderboard"> </div> -->
+      <div id="pagination">
+        <button type="button" class="btn0" onclick="backbtn()">&lt prev</button>
+        <ul>
+          <li class="link active" value="1" onclick="activeLink(event)">1</li>
+          <li class="link" value="2" onclick="activeLink(event)">2</li>
+          <li class="link" value="3" onclick="activeLink(event)">3</li>
+          <li class="link" value="4" onclick="activeLink(event)">4</li>
+          <li class="link" value="5" onclick="activeLink(event)">5</li>
+        </ul>
+        <button type="button" class="btn0" onclick="nextbtn()">next &gt</button>
+      </div>
+
+      <div id="visibi" style="display: none;">
+        <h4>Leaderboard</h4>
+        <table class="table table-primary">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Name</th>
+              <th scope="col">Total Expense</th>
+            </tr>
+          </thead>
+          <tbody id="leaderboard"> </tbody>
+        </table>
+      </div>
     </div>
   </main>
 
