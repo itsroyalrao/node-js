@@ -67,13 +67,22 @@
 
       <div id="pagination">
         <button type="button" class="btn0" onclick="backbtn()">&lt prev</button>
-        <ul>
+        <!-- <ul>
           <li class="link active" value="1" onclick="activeLink(event)">1</li>
           <li class="link" value="2" onclick="activeLink(event)">2</li>
           <li class="link" value="3" onclick="activeLink(event)">3</li>
           <li class="link" value="4" onclick="activeLink(event)">4</li>
           <li class="link" value="5" onclick="activeLink(event)">5</li>
-        </ul>
+        </ul> -->
+        <div>Rows per page:
+          <select name="page" id="page-number">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+          </select>
+          <span id="num"></span>
+        </div>
         <button type="button" class="btn0" onclick="nextbtn()">next &gt</button>
       </div>
 

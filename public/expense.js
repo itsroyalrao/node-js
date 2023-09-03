@@ -1,4 +1,7 @@
 let currentValue = 1;
+let expenseLength;
+let limit = document.getElementById('page-number').value;
+let num = document.getElementById('num');
 const userID = localStorage.getItem('userID');
 
 const form = document.getElementById('form');
@@ -10,7 +13,7 @@ async function createExpense(amount, description, category) {
   try {
     const obj = { amount, description, category, userID };
     await axios.post('/expense', obj);
-    getAllExpenses();
+
   } catch (error) {
     console.log(error);
   }
@@ -21,7 +24,7 @@ async function deleteExpense(expenseID) {
     await axios.delete(`/expense`, {
       params: { expenseID: expenseID.target.id }
     });
-    await getAllExpenses();
+
   } catch (error) {
     console.log(error);
   }
@@ -56,53 +59,98 @@ function addExpense() {
 
 const active = document.getElementsByClassName('active');
 (async () => {
+  const result = await axios.get('/expense/len');
+  console.log(result.data);
+  expenseLength = result.data;
   await getExpense();
 })();
 
-const link = document.getElementsByClassName('link');
-async function activeLink(event) {
-  for (const l of link) {
-    l.classList.remove('active');
-  }
-  event.target.classList.add('active');
-  currentValue = event.target.value;
+// const link = document.getElementsByClassName('link');
+// async function activeLink(event) {
+//   for (const l of link) {
+//     l.classList.remove('active');
+//   }
+//   event.target.classList.add('active');
+//   currentValue = event.target.value;
 
-  await getExpense();
-}
+//   await getExpense();
+// }
 
 async function backbtn() {
   if (currentValue > 1) {
-    for (const l of link) {
-      l.classList.remove('active');
-    }
+    // for (const l of link) {
+    //   l.classList.remove('active');
+    // }
     currentValue--;
-    link[currentValue - 1].classList.add('active');
+    // link[currentValue - 1].classList.add('active');
 
     await getExpense();
   }
 }
 
 async function nextbtn() {
-  if (currentValue < link.length) {
-    for (const l of link) {
-      l.classList.remove('active');
-    }
+  if (currentValue < expenseLength / limit) {
     currentValue++;
-    link[currentValue - 1].classList.add('active');
-
     await getExpense();
   }
 }
 
 async function getExpense() {
   try {
-    const result = await axios.get(`/expense?userID=${userID}&page=${currentValue}`);
+    limit = document.getElementById('page-number').value;
+    console.log(limit);
+    const result = await axios.get(`/expense?userID=${userID}&page=${currentValue}&limit=${limit}`);
+    console.log(result);
     const data = result.data.userList;
     items.innerHTML = '';
     data.forEach(element => {
       appendData(element.amount, element.description, element.category, element._id);
     });
+
+    console.log(typeof (expenseLength), typeof (limit), expenseLength);
+    // num.appendChild(document.createTextNode('1-' + Number(expenseLength) / Number(limit)) + 'of' + expenseLength)
+    num.appendChild(document.createTextNode(Number(expenseLength) / Number(limit)))
   } catch (e) {
     console.log(e.message);
   }
 }
+
+
+// async function getExpense() {
+//   try {
+//     const result = await axios.get(`/expense?userID=${userID}&page=${currentValue}`);
+//     const data = result.data.userList;
+//     items.innerHTML = '';
+//     data.forEach(element => {
+//       appendData(element.amount, element.description, element.category, element._id);
+//     });
+//   } catch (e) {
+//     console.log(e.message);
+//   }
+// }
+
+
+
+// async function nextbtn() {
+//   if (currentValue < link.length) {
+//     for (const l of link) {
+//       l.classList.remove('active');
+//     }
+//     currentValue++;
+//     link[currentValue - 1].classList.add('active');
+
+//     await getExpense();
+//   }
+// }
+
+// async function backbtn() {
+//   if (currentValue > 1) {
+//     // for (const l of link) {
+//     //   l.classList.remove('active');
+//     // }
+//     currentValue--;
+//     // link[currentValue - 1].classList.add('active');
+
+//     await getExpense();
+//   }
+// }
